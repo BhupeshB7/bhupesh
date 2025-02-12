@@ -6,9 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start", 
-    "lint": "next lint",
-    "preinstall": "npx npm@latest install --force",
-    "postinstall": "npm install --force",
+    "lint": "next lint", 
     "deploy": "npm run build && netlify deploy --prod --dir=.next"  },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
