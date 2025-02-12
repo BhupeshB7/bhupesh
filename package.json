@@ -1,15 +1,19 @@
 {
   "name": "portfolio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+<<<<<<< HEAD
     "lint": "next lint",
     "preinstall": "npx npm@latest install --force",
     "postinstall": "npm install --force",
     "deploy": "npm run build && netlify deploy --prod --dir=.next"
+=======
+    "lint": "next lint"
+>>>>>>> 28e988a4979f9fa5d2c1ec934ff4ebd46660d5e3
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
