@@ -19,10 +19,12 @@ import {
   Package2,
   Cpu,
   Settings,
-  ShieldCheck,
-  FlaskConical,
+  ShieldCheck, 
+  Layout,
+  Brain,
 } from "lucide-react";
 import Head from "next/head";
+import { SkillsIcon } from "../SkillsIcon";
 
 interface SkillItem {
   name: string;
@@ -85,34 +87,42 @@ const skills: SkillItem[] = [
 
 const expertiseList: ExpertiseItem[] = [
   {
-    title: "Scalable Backend Systems",
+    title: "Backend Development",
     description:
-      "Build robust, scalable, and high-performance backend applications.",
+      "Build scalable and high-performance backend systems with Node.js & Express.",
     icon: <Server size={30} className="text-primary" />,
   },
   {
-    title: "RESTful API Development",
-    description: "Develop and integrate RESTful APIs with best practices.",
+    title: "API Development and CI/CD",
+    description:
+      "Develop RESTful  APIs with best practices, Automate deployment workflows with CI/CD pipelines",
     icon: <Code size={30} className="text-primary" />,
   },
   {
-    title: "Database Optimization",
-    description: "Optimize database performance in SQL & NoSQL.",
+    title: "Database Management",
+    description: "Work with SQL (PostgreSQL, MySQL) & NoSQL (MongoDB).",
     icon: <Database size={30} className="text-primary" />,
   },
   {
     title: "Authentication & Security",
-    description: "Implement OAuth, JWT, and other security mechanisms.",
+    description:
+      "Implement secure authentication using JWT, OAuth, and bcrypt.",
     icon: <ShieldCheck size={30} className="text-primary" />,
   },
   {
-    title: "Unit Testing & TDD",
-    description: "Ensure code quality with unit testing and TDD.",
-    icon: <FlaskConical size={30} className="text-primary" />,
+    title: "Frontend Development",
+    description:
+      "Build dynamic and responsive UIs using React, Next.js, and Tailwind CSS.",
+    icon: <Layout size={30} className="text-primary" />,
   },
   {
-    title: "CI/CD Pipelines",
-    description: "Automate deployment workflows with CI/CD pipelines.",
+    title: "Problem Solving & Algorithms",
+    description: "Solve problems efficiently using DSA & algorithms.",
+    icon: <Brain size={30} className="text-primary" />,
+  },
+  {
+    title: "Version Control & Deployment",
+    description: "Manage code with Git/GitHub and deploy using CI/CD & Nginx.",
     icon: <Settings size={30} className="text-primary" />,
   },
 ];
@@ -123,10 +133,10 @@ export default function About() {
   const skillsRef = useRef<HTMLDivElement>(null);
 
   const isImageInView = useInView(imageRef, {
-    once: true, 
+    once: true,
   });
   const isExpertiseInView = useInView(expertiseRef, {
-    once: true, 
+    once: true,
   });
   const isSkillsInView = useInView(skillsRef, {
     once: true,
@@ -177,57 +187,63 @@ export default function About() {
         />
         <meta property="og:type" content="website" />
       </Head>
-      <div className="p-6 max-w-4xl mx-auto space-y-12">
+      <div className="p-3 max-w-4xl mx-auto space-y-6">
         <motion.h1
-          className="text-4xl font-extrabold text-center text-gray-900 dark:text-white tracking-tight"
+          className="text-2xl md:text-4xl  font-extrabold text-center text-gray-900 dark:text-white tracking-tight"
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
         >
-          Backend Developer | Node.js | Express.js
+          Fullstack Developer | Node.js
         </motion.h1>
 
         <motion.p
-          className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-center max-w-2xl mx-auto"
+          className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-center max-w-full mx-auto"
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
         >
-          I specialize in building scalable server-side applications with a deep
-          understanding of JavaScript (ES6+).
+          I specialize in scalable backend development using Node.js, Express,
+          PostgreSQL, and MongoDB. With strong expertise in JavaScript (ES6+),
+          TypeScript, and Next.js, I build efficient APIs, authentication
+          systems, and database-driven applications. I also have solid frontend
+          skills in React, Next.js, and Tailwind CSS, allowing me to create
+          dynamic and responsive UIs. Experienced in problem-solving,
+          algorithms, Git/GitHub, and CI/CD, I focus on writing clean,
+          maintainable, and high-performance code.
         </motion.p>
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+          <SkillsIcon />
+          <motion.div
+            ref={imageRef}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isImageInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="flex justify-center"
+          >
+            <Image
+              src="https://ik.imagekit.io/bhupeshb7/skills1.png?updatedAt=1733940909127"
+              alt="Bhupesh"
+              width={500}
+              height={300}
+              className="rounded-xl shadow-lg hover:scale-105 transition-transform duration-500"
+              priority
+            />
+          </motion.div>
+        </div>
 
-        {/* Profile Image with separate inView detection */}
-        <motion.div
-          ref={imageRef}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isImageInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="flex justify-center"
-        >
-          <Image
-            src="https://ik.imagekit.io/bhupeshb7/skills1.png?updatedAt=1733940909127"
-            alt="Bhupesh"
-            width={500}
-            height={300}
-            className="rounded-xl shadow-lg hover:scale-105 transition-transform duration-500"
-            priority
-          />
-        </motion.div>
-
-        {/* Expertise Section with staggered animations */}
         <motion.div
           ref={expertiseRef}
           initial="hidden"
           animate={isExpertiseInView ? "visible" : "hidden"}
           variants={staggerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 "
         >
           {expertiseList.map((item, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="relative bg-gray-100 dark:bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-lg border border-gray-300 dark:border-white/20"
+              className="relative bg-gray-50 dark:bg-white/10 backdrop-blur-lg rounded-lg p-6 shadow-lg border border-gray-300 dark:border-white/20"
             >
               <div className="mb-3">{item.icon}</div>
               <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
@@ -240,7 +256,6 @@ export default function About() {
           ))}
         </motion.div>
 
-        {/* Skills Carousel with separate inView detection */}
         <motion.div
           ref={skillsRef}
           initial="hidden"
@@ -251,7 +266,7 @@ export default function About() {
           <h2 className="text-2xl font-semibold text-center text-gray-900 dark:text-white">
             Technical Skills
           </h2>
-          <Carousel className="w-full max-w-3xl mx-auto">
+          <Carousel className=" w-[85%] md:w-full md:max-w-3xl mx-auto">
             <CarouselPrevious />
             <CarouselContent className="-ml-2">
               {skills.map((skill, index) => (

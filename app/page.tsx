@@ -1,12 +1,17 @@
- import dynamic from "next/dynamic";
+import AboutSkeleton from "@/components/skeleton/AboutSkeleton";
+import SidebarSkeleton from "@/components/skeleton/SidebarSkeleton";
+import dynamic from "next/dynamic";
 
-const SkeletonLoader = () => (
-  <div className="p-4 border rounded-lg shadow animate-pulse">
-    <div className="h-6 bg-gray-300 rounded w-3/4 mb-2"></div>
-    <div className="h-4 bg-gray-200 rounded w-5/6 mb-2"></div>
-    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-  </div>
-);
+const SkeletonLoader = () => {
+  return (
+    <main className="min-h-screen bg-gray-100 dark:bg-zinc-950 py-2">
+      <div className="container mx-auto flex flex-col md:flex-row items-stretch justify-center px-4 lg:px-8 xl:px-12 gap-6">
+        <SidebarSkeleton />
+        <AboutSkeleton />
+      </div>
+    </main>
+  );
+};
 
 const HomePage = dynamic(() => import("@/components/HomePage"), {
   loading: () => <SkeletonLoader />,

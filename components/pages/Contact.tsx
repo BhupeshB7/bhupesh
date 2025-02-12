@@ -260,7 +260,7 @@ const ContactSection = () => {
               variants={itemVariants}
               className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700"
             >
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     Schedule a Call
@@ -271,7 +271,7 @@ const ContactSection = () => {
                 </div>
                 <Button
                   variant="outline"
-                  onClick={() => window.open('https://calendly.com/yourusername', '_blank')}
+                  onClick={() => window.open('https://calendly.com/bhupeshb7-8581', '_blank')}
                   className="flex items-center space-x-2"
                 >
                   <CalendarDays className="h-5 w-5" />

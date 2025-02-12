@@ -1,38 +1,54 @@
 import React, { FC } from "react";
-import { motion } from "framer-motion";
-import { 
-  Book, 
-  Briefcase, 
-  Code2, 
+import { motion, useInView, useAnimation } from "framer-motion";
+import {
+  Book,
+  Briefcase,
+  Code2,
   Award,
   GraduationCap,
-  Terminal,
   Github,
   Database,
-  Monitor,
-  Server
+  Server,
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3
+// AnimatedSection component to handle scroll-based animations
+const AnimatedSection = ({ children, className = "" }:React.PropsWithChildren<{className?: string}>) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
+  const controls = useAnimation();
+
+  React.useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
     }
-  }
+  }, [isInView, controls]);
+
+  return (
+    <motion.div
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.5,
+            staggerChildren: 0.2,
+          },
+        },
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5 }
-  }
-};
 interface TimelineItemProps {
   year: string;
   title: string;
@@ -40,16 +56,23 @@ interface TimelineItemProps {
   description: string;
   icon: React.ComponentType<{ className?: string }>;
 }
+
 const SkillBar = ({ skill, level }: { skill: string; level: number }) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: false });
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(level), 500);
-    return () => clearTimeout(timer);
-  }, [level]);
+    if (isInView) {
+      const timer = setTimeout(() => setProgress(level), 500);
+      return () => clearTimeout(timer);
+    } else {
+      setProgress(0);
+    }
+  }, [isInView, level]);
 
   return (
-    <div className="space-y-2">
+    <div ref={ref} className="space-y-2">
       <div className="flex justify-between">
         <span className="text-sm font-medium">{skill}</span>
         <span className="text-sm text-gray-500">{level}%</span>
@@ -59,18 +82,25 @@ const SkillBar = ({ skill, level }: { skill: string; level: number }) => {
   );
 };
 
-const TimelineItem: FC<TimelineItemProps> = ({ 
-  year, 
-  title, 
-  subtitle, 
-  description, 
-  icon: Icon 
+const TimelineItem: FC<TimelineItemProps> = ({
+  year,
+  title,
+  subtitle,
+  description,
+  icon: Icon,
 }) => (
-  <motion.div 
-    variants={itemVariants}
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, x: -20 },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.5 },
+      },
+    }}
     className="relative pl-8 pb-8 border-l-2 border-gray-200 dark:border-gray-700 last:border-0"
   >
-    <div className="absolute left-[-9px] p-1 bg-white dark:bg-zinc-900 rounded-full border-2 border-primary">
+    <div className="absolute left-[-14px] p-1 bg-white dark:bg-zinc-900 rounded-full border-2 border-primary">
       <Icon className="w-4 h-4 text-primary" />
     </div>
     <div className="mb-1 text-sm text-gray-500 dark:text-gray-400">{year}</div>
@@ -80,58 +110,27 @@ const TimelineItem: FC<TimelineItemProps> = ({
   </motion.div>
 );
 
-
 export default function Resume() {
-  const technicalSkills = [
-    { name: "JavaScript/TypeScript", level: 90 },
-    { name: "React/Next.js", level: 85 },
-    { name: "Node.js/Express", level: 88 },
-    { name: "MongoDB/SQL", level: 82 },
-    { name: "HTML/CSS/Tailwind", level: 95 },
-    { name: "Git/Version Control", level: 85 }
-  ];
-
   const softSkills = [
     { name: "Problem Solving", level: 92 },
     { name: "Communication", level: 88 },
     { name: "Team Collaboration", level: 90 },
-    { name: "Time Management", level: 85 }
+    { name: "Time Management", level: 85 },
   ];
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      className="p-6 space-y-12"
-    >
+    <div className="p-6 space-y-12">
       {/* Header */}
-      <motion.div variants={itemVariants} className="space-y-4">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Professional Resume</h1>
+      <AnimatedSection>
         <p className="text-lg text-gray-700 dark:text-gray-300">
-          Fullstack Developer specializing in modern web technologies and scalable applications.
+          Fullstack Developer specializing in modern web technologies and
+          scalable applications.
         </p>
-      </motion.div>
+      </AnimatedSection>
 
-      {/* Education */}
-      <motion.div variants={itemVariants} className="space-y-6">
-        <div className="flex items-center gap-2">
-          <GraduationCap className="w-6 h-6 text-primary" />
-          <h2 className="text-2xl font-semibold">Education</h2>
-        </div>
-        <div className="space-y-6">
-          <TimelineItem
-            year="2020 - 2024"
-            title="B.E. Computer Science"
-            subtitle="BITS Pilani"
-            description="Focused on Computer Science fundamentals, Data Structures, Algorithms, and Software Engineering principles. Participated in various technical competitions and hackathons."
-            icon={Book}
-          />
-        </div>
-      </motion.div>
-
+     
       {/* Experience */}
-      <motion.div variants={itemVariants} className="space-y-6">
+      <AnimatedSection className="space-y-6">
         <div className="flex items-center gap-2">
           <Briefcase className="w-6 h-6 text-primary" />
           <h2 className="text-2xl font-semibold">Experience</h2>
@@ -144,31 +143,106 @@ export default function Resume() {
             description="Ready to apply my strong foundation in fullstack development, with hands-on experience from personal projects and internships."
             icon={Code2}
           />
+        </div>
+      </AnimatedSection>
+
+      {/* Internships */}
+      <AnimatedSection className="space-y-6">
+        <div className="flex items-center gap-2">
+          <Briefcase className="w-6 h-6 text-primary" />
+          <h2 className="text-2xl font-semibold">Internships</h2>
+        </div>
+        <div className="space-y-6">
           <TimelineItem
-            year="Summer 2023"
-            title="Software Development Intern"
-            subtitle="Tech Startup"
-            description="Developed and maintained web applications using React.js and Node.js. Implemented new features and optimized existing codebase for better performance."
-            icon={Terminal}
+            year="2022"
+            title="Internship at Edureka"
+            subtitle="Fullstack Developer"
+            description="Participated in a full-stack development project, focusing on user authentication, REST APIs Design, and payment Integration. Developed a robust and scalable application using React js, Node.js, and MongoDB(Zomate clone)."
+            icon={Code2}
           />
         </div>
-      </motion.div>
+      </AnimatedSection>
 
-      {/* Technical Skills */}
-      <motion.div variants={itemVariants} className="space-y-6">
+      {/* Key Projects */}
+      <AnimatedSection className="space-y-6">
         <div className="flex items-center gap-2">
-          <Monitor className="w-6 h-6 text-primary" />
-          <h2 className="text-2xl font-semibold">Technical Skills</h2>
+          <Github className="w-6 h-6 text-primary" />
+          <h2 className="text-2xl font-semibold">Key Projects</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {technicalSkills.map((skill) => (
-            <SkillBar key={skill.name} skill={skill.name} level={skill.level} />
-          ))}
+        <div className="space-y-6">
+          <TimelineItem
+            year="2024"
+            title="Url Shortener"
+            subtitle="Full Stack Application"
+            description="Built a scalable url shortener using Next.js, Node.js, and MongoDB. Implemented features like authentication, advance analytics, QR code generation, privacy and security."
+            icon={Server}
+          />
+          <TimelineItem
+            year="2024"
+            title="VS Code Extension"
+            subtitle="Vs code theme and extension"
+            description="Developed a VS code extension for personal use. It includes a dark theme, a minimalist theme."
+            icon={Code2}
+          />
+          <TimelineItem
+            year="2023"
+            title="E - commerce Backend"
+            subtitle="Backend Application"
+            description="Developed a scalable e-commerce backend using Node.js, Express, MongoDB, and Stripe. Implemented features like authentication, user management, order management, product filter/Searching, inventory management, and real-time updates."
+            icon={Database}
+          />
         </div>
-      </motion.div>
+      </AnimatedSection>
+       {/* Education */}
+      <AnimatedSection className="space-y-6">
+        <div className="flex items-center gap-2">
+          <GraduationCap className="w-6 h-6 text-primary" />
+          <h2 className="text-2xl font-semibold">Education</h2>
+        </div>
+        <div className="space-y-6">
+          <TimelineItem
+            year="2023 - 2026"
+            title="B.Sc. in Computer Science"
+            subtitle="BITS Pilani"
+            description="Focused on Database design, Fullstack Development, Data Structures, OS, Algorithms, and Software Engineering principles."
+            icon={Book}
+          />
+          <TimelineItem
+            year="2019 - 2022"
+            title="Diploma in Computer Science"
+            subtitle="Govt. Polytechnic College, Saharsa"
+            description="Focused on Computer Science fundamentals, Data Structures, Algorithms, and Software Engineering principles."
+            icon={Book}
+          />
+        </div>
+      </AnimatedSection>
+
+      {/* Certifications */}
+      <AnimatedSection className="space-y-6">
+        <div className="flex items-center gap-2">
+          <Award className="w-6 h-6 text-primary" />
+          <h2 className="text-2xl font-semibold">Certifications</h2>
+        </div>
+        <div className="space-y-6">
+          <TimelineItem
+            year="2024"
+            title="React Native"
+            subtitle="Certified from Udemy"
+            description="Learned React Native from Udemy. Developed a mobile application using React Native."
+            icon={Award}
+          />
+          <TimelineItem
+            year="2024"
+            title="React js"
+            subtitle="Certified from Udemy"
+            description="Learned React js from Udemy. Developed a web application using React js."
+            icon={Award}
+          />
+        </div>
+      </AnimatedSection>
 
       {/* Soft Skills */}
-      <motion.div variants={itemVariants} className="space-y-6">
+      <AnimatedSection className="space-y-6">
         <div className="flex items-center gap-2">
           <Award className="w-6 h-6 text-primary" />
           <h2 className="text-2xl font-semibold">Soft Skills</h2>
@@ -178,55 +252,7 @@ export default function Resume() {
             <SkillBar key={skill.name} skill={skill.name} level={skill.level} />
           ))}
         </div>
-      </motion.div>
-
-      {/* Key Projects */}
-      <motion.div variants={itemVariants} className="space-y-6">
-        <div className="flex items-center gap-2">
-          <Github className="w-6 h-6 text-primary" />
-          <h2 className="text-2xl font-semibold">Key Projects</h2>
-        </div>
-        <div className="space-y-6">
-          <TimelineItem
-            year="2023"
-            title="E-commerce Platform"
-            subtitle="Full Stack Application"
-            description="Built a scalable e-commerce platform using Next.js, Node.js, and MongoDB. Implemented features like authentication, payment integration, and real-time inventory management."
-            icon={Server}
-          />
-          <TimelineItem
-            year="2023"
-            title="Social Media Dashboard"
-            subtitle="Frontend Application"
-            description="Developed a responsive dashboard using React and TailwindCSS. Integrated multiple APIs and implemented real-time data visualization using Chart.js."
-            icon={Database}
-          />
-        </div>
-      </motion.div>
-
-      {/* Certifications */}
-      <motion.div variants={itemVariants} className="space-y-6">
-        <div className="flex items-center gap-2">
-          <Award className="w-6 h-6 text-primary" />
-          <h2 className="text-2xl font-semibold">Certifications</h2>
-        </div>
-        <div className="space-y-6">
-          <TimelineItem
-            year="2023"
-            title="AWS Cloud Practitioner"
-            subtitle="Amazon Web Services"
-            description="Fundamental understanding of AWS Cloud services, security, and architecture principles."
-            icon={Award}
-          />
-          <TimelineItem
-            year="2023"
-            title="Meta Frontend Developer"
-            subtitle="Meta (Facebook)"
-            description="Comprehensive training in modern frontend development practices and frameworks."
-            icon={Award}
-          />
-        </div>
-      </motion.div>
-    </motion.div>
+      </AnimatedSection>
+    </div>
   );
 }

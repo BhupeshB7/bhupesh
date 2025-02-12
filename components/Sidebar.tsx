@@ -20,8 +20,8 @@ import {
 import TypewriterHeader from "./TypeWritterHeader";
 
 const contactInfo = [
-  { name: "Email", value: "bhupeshb7@gmail.com", icon: Mail, link: "mailto:bhupeshb7@gmail.com" },
-  { name: "Contact", value: "+91 9876543210", icon: Phone, link: "tel:+919876543210" },
+  { name: "Email", value: "b29.bhupesh@gmail.com", icon: Mail, link: "mailto:b29.bhupesh@gmail.com" },
+  { name: "Contact", value: "+91 8581869783", icon: Phone, link: "tel:+918581869783" },
   { name: "Home", value: "Patna", icon: House, link: "https://www.google.com/maps?q=Patna" },
 ];
 

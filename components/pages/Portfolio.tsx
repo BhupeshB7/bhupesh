@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Search } from "lucide-react";
-import { Input } from "@/components/ui/input"; 
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -11,19 +11,19 @@ import {
 } from "@/components/ui/select";
 import {
   Pagination,
-  PaginationContent, 
+  PaginationContent,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import Image from 'next/image';
+import Image from "next/image";
 
 interface Project {
   id: number;
   title: string;
   description: string;
-  category: 'Frontend' | 'Backend' | 'Fullstack';
+  category: "Frontend" | "Backend" | "Fullstack" | "Vs Code";
   image: string;
   githubLink: string;
   liveLink: string;
@@ -34,25 +34,52 @@ interface Project {
 const dummyProjects: Project[] = [
   {
     id: 1,
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce platform with payment integration",
-    category: "Fullstack",
-    image: "/api/placeholder/600/400",
-    githubLink: "https://github.com",
-    liveLink: "https://example.com",
-    technologies: ["React", "Node.js", "MongoDB"]
+    title: "E-commerce Backend",
+    description:
+      "Developed a scalable e-commerce backend using Node.js, Express, MongoDB, and Stripe. Implemented features like authentication, user management,order management, product filter/Searching , inventory management, and real-time updates.",
+    category: "Backend",
+    image:
+      "https://img.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg?ga=GA1.1.1581311674.1721983214&semt=ais_hybrid",
+    githubLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
+    liveLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
+    technologies: ["Node.js", "Express", "Cloudinary", "MongoDB"],
   },
   {
     id: 2,
-    title: "Social Media Dashboard",
-    description: "Real-time social media analytics dashboard",
-    category: "Frontend",
-    image: "/api/placeholder/600/400",
-    githubLink: "https://github.com",
-    liveLink: "https://example.com",
-    technologies: ["React", "TailwindCSS", "Chart.js"]
+    title: "Url Shortener",
+    description:
+      " Built a scalable url shortener using Next.js, Node.js, and MongoDB. Implemented features like authentication, advance analytics, QR code generation, privacy and security.",
+    category: "Fullstack",
+    image:
+      "https://ik.imagekit.io/bhupeshb7/Screenshot%202025-02-12%20000049.png?updatedAt=1739298717048",
+    githubLink: "https://github.com/BhupeshB7/urlshortner_backend",
+    liveLink: "https://shortenx.netlify.app",
+    technologies: ["React", "TailwindCSS", "Chart.js"],
   },
-  // ... Add 6 more similar projects with different categories
+  {
+    id: 3,
+    title: "Blog Web Apps",
+    description:
+      "Built a scalable blog web app using React js, Node.js, and MongoDB. Implemented features like authentication, user management using Clerk, CRUD operations, and real-time updates ,for caching use react-query,",
+    category: "Backend",
+    image:
+      "https://ik.imagekit.io/bhupeshb7/Screenshot%202025-02-12%20000126.png?updatedAt=1739298717005",
+    githubLink: "https://github.com/BhupeshB7/blog_backend",
+    liveLink: "https://blogb71.netlify.app",
+    technologies: ["Node.js", "Express", "Cloudinary", "MongoDB"],
+  },
+  {
+    id: 4,
+    title: "VS Code Extension",
+    description:
+      "Developed a VS code extension for personal use. It includes a dark theme, a minimalist theme.",
+    category: "Vs Code",
+    image:
+      "https://img.freepik.com/free-vector/coding-software-development-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-programming-code-illustration_107791-3863.jpg?ga=GA1.1.1581311674.1721983214&semt=ais_hybrid",
+    githubLink: "https://github.com/BhupeshB7/vscode-theme",
+    liveLink: "https://marketplace.visualstudio.com/items?itemName=BhupeshB7.bhupeshb7-coder-dark-theme",
+    technologies: ["VS Code"],
+  },
 ];
 
 const Portfolio = () => {
@@ -60,18 +87,23 @@ const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 3;
- 
-  const filteredProjects = dummyProjects.filter(project => {
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "ALL" || project.category === selectedCategory;
+
+  const filteredProjects = dummyProjects.filter((project) => {
+    const matchesSearch =
+      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "ALL" || project.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   // Calculate pagination
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
+  const currentProjects = filteredProjects.slice(
+    indexOfFirstProject,
+    indexOfLastProject
+  );
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
 
   // Animation variants
@@ -80,9 +112,9 @@ const Portfolio = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -91,18 +123,16 @@ const Portfolio = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5
-      }
-    }
+        duration: 0.5,
+      },
+    },
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-          My Portfolio
-        </h2>
+         
         <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Explore my latest projects and technical achievements
         </p>
@@ -119,10 +149,7 @@ const Portfolio = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <Select
-          value={selectedCategory}
-          onValueChange={setSelectedCategory}
-        >
+        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
           <SelectTrigger className="w-full sm:w-40">
             <SelectValue placeholder="Category" />
           </SelectTrigger>
@@ -131,6 +158,7 @@ const Portfolio = () => {
             <SelectItem value="Frontend">Frontend</SelectItem>
             <SelectItem value="Backend">Backend</SelectItem>
             <SelectItem value="Fullstack">Fullstack</SelectItem>
+            <SelectItem value="Vs Code">Vs Code</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -155,7 +183,7 @@ const Portfolio = () => {
               width={500}
               height={192}
             />
-            
+
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
               <a
@@ -206,9 +234,11 @@ const Portfolio = () => {
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious 
-              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-              className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+            <PaginationPrevious
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              className={
+                currentPage === 1 ? "pointer-events-none opacity-50" : ""
+              }
             />
           </PaginationItem>
           {[...Array(totalPages)].map((_, index) => (
@@ -223,8 +253,14 @@ const Portfolio = () => {
           ))}
           <PaginationItem>
             <PaginationNext
-              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-              className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              className={
+                currentPage === totalPages
+                  ? "pointer-events-none opacity-50"
+                  : ""
+              }
             />
           </PaginationItem>
         </PaginationContent>
