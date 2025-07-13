@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,15 +13,15 @@ import {
   Calendar,
   Send,
   MessageSquare,
-  CalendarDays
+  CalendarDays,
 } from "lucide-react";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -30,10 +30,10 @@ const ContactSection = () => {
     e.preventDefault();
     setLoading(true);
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setLoading(false);
     // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   const containerVariants = {
@@ -43,9 +43,9 @@ const ContactSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -53,47 +53,42 @@ const ContactSection = () => {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   const contactMethods = [
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Call Me",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      value: "+91 8581869783",
+      link: "tel:+918581869783",
     },
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      value: "developer@example.com",
-      link: "mailto:developer@example.com"
+      value: "b29.bhupesh@gmail.com",
+      link: "mailto:b29.bhupesh@gmail.com",
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Location",
-      value: "San Francisco, CA",
-      link: "https://maps.google.com"
-    }
+      value: "Patna, India",
+      link: "https://maps.google.com/maps?q=Patna,+India&hl=en&sll=28.613941,77.209033&sspn=0.007917,0.019305&oq=Patna&hnear=Patna,+India&t=m&z=16&iwloc=A",
+    },
   ];
 
   const socialLinks = [
     {
       icon: <Github className="h-5 w-5" />,
       label: "GitHub",
-      link: "https://github.com/yourusername"
+      link: "https://github.com/BhupeshB7",
     },
     {
       icon: <Linkedin className="h-5 w-5" />,
       label: "LinkedIn",
-      link: "https://linkedin.com/in/yourusername"
+      link: "https://linkedin.com/in/yourusername",
     },
-    {
-      icon: <Calendar className="h-5 w-5" />,
-      label: "Schedule Call",
-      link: "https://calendly.com/yourusername"
-    }
   ];
 
   return (
@@ -105,23 +100,24 @@ const ContactSection = () => {
     >
       {/* Header */}
       <div className="text-center space-y-4">
-        <motion.h2 
+        <motion.h2
           variants={itemVariants}
           className="text-3xl font-bold text-gray-900 dark:text-white"
         >
           Get In Touch
         </motion.h2>
-        <motion.p 
+        <motion.p
           variants={itemVariants}
           className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
         >
-          I&apos;m always open to discussing new projects&lsquo; creative ideas or opportunities to be part of your visions.
+          I&apos;m always open to discussing new projects&lsquo; creative ideas
+          or opportunities to be part of your visions.
         </motion.p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Contact Methods */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           className="space-y-6 lg:col-span-1 "
         >
@@ -152,7 +148,10 @@ const ContactSection = () => {
           ))}
 
           {/* Social Links */}
-          <motion.div variants={itemVariants} className="flex justify-center space-x-4 pt-4">
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center space-x-4 pt-4"
+          >
             {socialLinks.map((social, index) => (
               <a
                 key={index}
@@ -169,10 +168,7 @@ const ContactSection = () => {
         </motion.div>
 
         {/* Contact Form */}
-        <motion.div 
-          variants={containerVariants}
-          className="lg:col-span-2"
-        >
+        <motion.div variants={containerVariants} className="lg:col-span-2">
           <Card className="p-8 bg-gray-100 dark:bg-white/10 backdrop-blur-lg rounded-lg shadow-lg border border-gray-300 dark:border-white/20">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -183,7 +179,9 @@ const ContactSection = () => {
                   <Input
                     required
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     placeholder="Bhupesh Kumar"
                     className="border border-gray-300 dark:border-white/20"
                   />
@@ -196,13 +194,15 @@ const ContactSection = () => {
                     required
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     placeholder="bhupesh@example.com"
                     className="border border-gray-300 dark:border-white/20"
                   />
                 </motion.div>
               </div>
-              
+
               <motion.div variants={itemVariants}>
                 <label className="block text-sm font-medium mb-2">
                   Subject
@@ -210,7 +210,9 @@ const ContactSection = () => {
                 <Input
                   required
                   value={formData.subject}
-                  onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, subject: e.target.value })
+                  }
                   placeholder="Project Discussion"
                   className="border border-gray-300 dark:border-white/20"
                 />
@@ -223,25 +225,28 @@ const ContactSection = () => {
                 <Textarea
                   required
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   placeholder="Your message here..."
                   className="min-h-[150px] border border-gray-300 dark:border-white/20"
                 />
               </motion.div>
 
-              <motion.div 
-                variants={itemVariants}
-                className="flex justify-end"
-              >
-                <Button 
-                  type="submit" 
+              <motion.div variants={itemVariants} className="flex justify-end">
+                <Button
+                  type="submit"
                   disabled={loading}
                   className="flex items-center space-x-2"
                 >
                   {loading ? (
                     <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     >
                       <MessageSquare className="h-5 w-5" />
                     </motion.div>
@@ -256,7 +261,7 @@ const ContactSection = () => {
             </form>
 
             {/* Calendar Integration */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700"
             >
@@ -271,7 +276,9 @@ const ContactSection = () => {
                 </div>
                 <Button
                   variant="outline"
-                  onClick={() => window.open('https://calendly.com/bhupeshb7-8581', '_blank')}
+                  onClick={() =>
+                    window.open("https://calendly.com/bhupeshb7-8581", "_blank")
+                  }
                   className="flex items-center space-x-2"
                 >
                   <CalendarDays className="h-5 w-5" />

@@ -45,7 +45,7 @@ export default function RootLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <meta name="google-site-verification" content="GBCgSd4LcLreoXf2JMWxCHwKwLWOeBF9gfAioRrS580" />
         {/* ✅ Preload Fonts */}
         <link
           rel="preload"
