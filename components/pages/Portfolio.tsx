@@ -34,18 +34,30 @@ interface Project {
 const dummyProjects: Project[] = [
   {
     id: 1,
+    title: "Google drive clone",
+    description:
+      "Developed a secure and scalable Google Drive clone with React.js, Node.js, and MongoDB. Implemented stateful authentication using Google and GitHub OAuth, with robust session management using secure cookies. Enhanced security through CSP (Content Security Policy), input sanitization, and server-side protection. Features include real-time file upload , access control, and user activity analytics.",
+    category: "Fullstack",
+    image:
+      "https://ik.imagekit.io/bhupeshb7/google-drive.png?updatedAt=1753180230748",
+    githubLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
+    liveLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
+    technologies: ["React","Node.js", "Express", "Cloudinary", "MongoDB","Redis"],
+  },
+  {
+    id: 2,
     title: "E-commerce Backend",
     description:
       "Developed a scalable e-commerce backend using Node.js, Express, MongoDB, and Stripe. Implemented features like authentication, user management,order management, product filter/Searching , inventory management, and real-time updates.",
     category: "Backend",
     image:
-      "https://img.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg?ga=GA1.1.1581311674.1721983214&semt=ais_hybrid",
+      "https://ik.imagekit.io/bhupeshb7/google-drive-clone?updatedAt=1753179574193",
     githubLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
     liveLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
     technologies: ["Node.js", "Express", "Cloudinary", "MongoDB"],
   },
   {
-    id: 2,
+    id: 3,
     title: "Url Shortener",
     description:
       " Built a scalable url shortener using Next.js, Node.js, and MongoDB. Implemented features like authentication, advance analytics, QR code generation, privacy and security.",
@@ -56,8 +68,21 @@ const dummyProjects: Project[] = [
     liveLink: "https://shortenx.netlify.app",
     technologies: ["React", "TailwindCSS", "Chart.js"],
   },
+  
   {
-    id: 3,
+    id: 4,
+    title: "VS Code Extension",
+    description:
+      "Developed a VS code extension for personal use. It includes a dark theme, a minimalist theme.",
+    category: "Vs Code",
+    image:
+      "https://github.com/BhupeshB7/vscode-theme/raw/HEAD/bg.png",
+    githubLink: "https://github.com/BhupeshB7/vscode-theme",
+    liveLink: "https://marketplace.visualstudio.com/items?itemName=BhupeshB7.bhupeshb7-coder-dark-theme",
+    technologies: ["VS Code"],
+  },
+  {
+    id: 5,
     title: "Blog Web Apps",
     description:
       "Built a scalable blog web app using React js, Node.js, and MongoDB. Implemented features like authentication, user management using Clerk, CRUD operations, and real-time updates ,for caching use react-query,",
@@ -67,18 +92,6 @@ const dummyProjects: Project[] = [
     githubLink: "https://github.com/BhupeshB7/blog_backend",
     liveLink: "https://blogb71.netlify.app",
     technologies: ["Node.js", "Express", "Cloudinary", "MongoDB"],
-  },
-  {
-    id: 4,
-    title: "VS Code Extension",
-    description:
-      "Developed a VS code extension for personal use. It includes a dark theme, a minimalist theme.",
-    category: "Vs Code",
-    image:
-      "https://img.freepik.com/free-vector/coding-software-development-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-coding-software-development-tools-programming-code-illustration_107791-3863.jpg?ga=GA1.1.1581311674.1721983214&semt=ais_hybrid",
-    githubLink: "https://github.com/BhupeshB7/vscode-theme",
-    liveLink: "https://marketplace.visualstudio.com/items?itemName=BhupeshB7.bhupeshb7-coder-dark-theme",
-    technologies: ["VS Code"],
   },
 ];
 
@@ -174,7 +187,7 @@ const Portfolio = () => {
           <motion.div
             key={project.id}
             variants={itemVariants}
-            className="group relative rounded-xl overflow-hidden shadow-lg bg-white dark:bg-zinc-800"
+            className="group relative rounded-xl overflow-hidden shadow-lg  bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800"
           >
             <Image
               src={project.image}

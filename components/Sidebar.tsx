@@ -44,7 +44,7 @@ const animationVariants = {
 
 const MobileContent = ({   }) => {
   return (
-    <div className="md:hidden w-full">
+    <div className="md:hidden w-full ">
       <div className="flex items-center gap-4 p-4">
         <Image
           src="https://ik.imagekit.io/bhupeshb7/img_CiOKjIdaPH.jpg?updatedAt=1732775938887"
@@ -65,7 +65,7 @@ const MobileContent = ({   }) => {
               <ChevronDown className="w-6 h-6" />
             </button>
           </DialogTrigger>
-          <DialogContent className="max-w-[90%] sm:max-w-[400px] rounded-xl">
+          <DialogContent className="max-w-[90%] sm:max-w-[400px] rounded-xl  bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800">
             <DialogHeader>
               <DialogTitle className="text-center">Profile Details</DialogTitle>
             </DialogHeader>
@@ -90,7 +90,7 @@ const MobileContent = ({   }) => {
                       className="flex items-center gap-3 py-2 text-gray-800 dark:text-gray-100 font-medium hover:text-green-500 transition"
                       whileHover={{ scale: 1.05 }}
                     >
-                      <span className="bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-500 rounded-lg p-2 border border-gray-300 dark:border-gray-700">
+                      <span className=" bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 text-gray-600 dark:text-gray-500 rounded-lg p-2 border border-gray-300 dark:border-gray-700">
                         <Icon className="w-4 h-4" />
                       </span>
                       {value}
@@ -134,7 +134,7 @@ const DesktopSidebar = () => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="hidden max-h-[700px] md:flex flex-col gap-6 w-full md:w-[30%] bg-white p-8 dark:bg-zinc-900 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-lg dark:shadow-md"
+      className="hidden max-h-[700px] md:flex flex-col gap-6 w-full md:w-[30%]   p-8 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-lg dark:shadow-md"
     >
       <motion.div whileHover={{ scale: 1.1 }}>
         <Image
@@ -179,7 +179,7 @@ const DesktopSidebar = () => {
             className="flex items-center gap-3 py-2 text-gray-800 dark:text-gray-100 font-medium hover:text-green-500 transition"
             whileHover={{ scale: 1.05 }}
           >
-            <span className="bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-500 rounded-lg p-3 border border-gray-300 dark:border-gray-700 transition transform hover:scale-110 hover:shadow-md dark:hover:shadow-lg">
+            <span className="bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 text-gray-600 dark:text-gray-500 rounded-lg p-3 border border-gray-300 dark:border-gray-700 transition transform hover:scale-110 hover:shadow-md dark:hover:shadow-lg">
               <Icon className="w-5 h-5" />
             </span>
             {value}

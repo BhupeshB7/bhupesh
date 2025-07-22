@@ -4,6 +4,7 @@
 
 body {
   font-family: jetbrains-mono, monospace;
+  
 }
 
 @layer base {
@@ -69,6 +70,10 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+.about-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    display: none;
 }
 /* styles.css */
 ::-webkit-scrollbar {

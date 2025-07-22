@@ -65,11 +65,11 @@ export default function RootLayout({
         <script async src="https://analytics.example.com/script.js"></script>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${jetBrainsMono.variable} antialiased`}  // Add JetBrains Mono variable
+        className={`${geistSans.variable} ${geistMono.variable} ${jetBrainsMono.variable} antialiased  bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800`}  // Add JetBrains Mono variable
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

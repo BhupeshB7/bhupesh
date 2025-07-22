@@ -12,7 +12,7 @@ interface ContentProps {
 
 const Content: React.FC<ContentProps> = ({ activeTab, setActiveTab }) => {
   return (
-    <section className="w-full md:w-[66.66%] lg:w-[70%] xl:w-[72%] bg-white dark:bg-zinc-900 border rounded-xl shadow-md min-h-[300px]">
+    <section className="w-full md:w-[66.66%] lg:w-[70%] xl:w-[72%] bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl shadow-md min-h-[300px]">
       <div className="flex justify-between items-center p-4">
         <h1 className="text-xl md:text-2xl font-bold capitalize">
           {activeTab}

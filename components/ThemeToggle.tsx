@@ -18,8 +18,7 @@ export default function ThemeToggle() {
         className="border border-gray-300 dark:border-gray-600 rounded-md px-2 py-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
       >
         <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="system">System</option>
+        <option value="dark">Dark</option> 
       </select>
     </div>
   );
