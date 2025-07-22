@@ -23,7 +23,7 @@ interface Project {
   id: number;
   title: string;
   description: string;
-  category: "Frontend" | "Backend" | "Fullstack" | "Vs Code";
+  category: "Frontend" | "Backend" | "Fullstack" | "Vs Code" | "AI / Fullstack";
   image: string;
   githubLink: string;
   liveLink: string;
@@ -40,12 +40,24 @@ const dummyProjects: Project[] = [
     category: "Fullstack",
     image:
       "https://ik.imagekit.io/bhupeshb7/google-drive.png?updatedAt=1753180230748",
-    githubLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
+    githubLink: "https://github.com/BhupeshB7/hackathon-backend",
     liveLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
     technologies: ["React","Node.js", "Express", "Cloudinary", "MongoDB","Redis"],
   },
   {
-    id: 2,
+  id: 2,
+  title: "DSA & System Design Helper + AI Website Builder",
+  description:
+    "Built an AI-powered web app that allows users to generate and deploy full-stack websites to Vercel using natural language prompts. Includes a DSA and System Design helper with editable code templates, real-time explanations, and visual diagrams. Features live code editing, version history, secure deployments, and custom domain support—perfect for developers and interview preparation.",
+  category: "AI / Fullstack",
+  image:
+    "https://ik.imagekit.io/bhupeshb7/Screenshot%202025-07-22%20190539.png?updatedAt=1753191367102",  
+  githubLink: "https://github.com/BhupeshB7",  
+  liveLink: "https://coderarmy-ai.netlify.app/", 
+  technologies: ["React.js", "Gemini", "Vercel", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
+},
+  {
+    id: 3,
     title: "E-commerce Backend",
     description:
       "Developed a scalable e-commerce backend using Node.js, Express, MongoDB, and Stripe. Implemented features like authentication, user management,order management, product filter/Searching , inventory management, and real-time updates.",
@@ -57,7 +69,7 @@ const dummyProjects: Project[] = [
     technologies: ["Node.js", "Express", "Cloudinary", "MongoDB"],
   },
   {
-    id: 3,
+    id: 4,
     title: "Url Shortener",
     description:
       " Built a scalable url shortener using Next.js, Node.js, and MongoDB. Implemented features like authentication, advance analytics, QR code generation, privacy and security.",
@@ -70,7 +82,7 @@ const dummyProjects: Project[] = [
   },
   
   {
-    id: 4,
+    id: 5,
     title: "VS Code Extension",
     description:
       "Developed a VS code extension for personal use. It includes a dark theme, a minimalist theme.",
@@ -82,7 +94,7 @@ const dummyProjects: Project[] = [
     technologies: ["VS Code"],
   },
   {
-    id: 5,
+    id: 6,
     title: "Blog Web Apps",
     description:
       "Built a scalable blog web app using React js, Node.js, and MongoDB. Implemented features like authentication, user management using Clerk, CRUD operations, and real-time updates ,for caching use react-query,",
@@ -167,8 +179,7 @@ const Portfolio = () => {
             <SelectValue placeholder="Category" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="ALL">All Projects</SelectItem>
-            <SelectItem value="Frontend">Frontend</SelectItem>
+            <SelectItem value="ALL">All Projects</SelectItem> 
             <SelectItem value="Backend">Backend</SelectItem>
             <SelectItem value="Fullstack">Fullstack</SelectItem>
             <SelectItem value="Vs Code">Vs Code</SelectItem>

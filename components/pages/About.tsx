@@ -74,13 +74,6 @@ const PremiumAbout = () => {
       color: "from-yellow-400 to-orange-500",
     },
     {
-      name: "TypeScript",
-      icon: <Code size={24} />,
-      level: 90,
-      category: "frontend",
-      color: "from-blue-400 to-blue-600",
-    },
-    {
       name: "React.js",
       icon: <Cpu size={24} />,
       level: 92,
@@ -88,23 +81,16 @@ const PremiumAbout = () => {
       color: "from-cyan-400 to-blue-500",
     },
     {
-      name: "Next.js",
-      icon: <Layers size={24} />,
-      level: 88,
-      category: "frontend",
-      color: "from-gray-700 to-gray-900",
-    },
-    {
       name: "Node.js",
       icon: <Server size={24} />,
-      level: 93,
+      level: 95,
       category: "backend",
       color: "from-green-500 to-green-700",
     },
     {
       name: "Express.js",
       icon: <Package2 size={24} />,
-      level: 91,
+      level: 94,
       category: "backend",
       color: "from-gray-600 to-gray-800",
     },
@@ -114,14 +100,14 @@ const PremiumAbout = () => {
       level: 87,
       category: "database",
       color: "from-green-400 to-green-600",
-    },
+    }, 
     {
-      name: "PostgreSQL",
+      name: "Redis",
       icon: <Database size={24} />,
-      level: 85,
+      level: 87,
       category: "database",
-      color: "from-blue-500 to-indigo-600",
-    },
+      color: "from-red-400 to-green-600",
+    }, 
     {
       name: "Git",
       icon: <GitBranch size={24} />,
@@ -135,6 +121,26 @@ const PremiumAbout = () => {
       level: 82,
       category: "tools",
       color: "from-purple-500 to-pink-600",
+    },  {
+      name: "TypeScript",
+      icon: <Code size={24} />,
+      level: 74,
+      category: "frontend",
+      color: "from-blue-400 to-blue-600",
+    },
+     {
+      name: "SQL",
+      icon: <Database size={24} />,
+      level: 64,
+      category: "database",
+      color: "from-amber-400 to-purple-600",
+    },
+    {
+      name: "Next.js",
+      icon: <Layers size={24} />,
+      level: 67,
+      category: "frontend",
+      color: "from-gray-700 to-gray-900",
     },
   ];
 
@@ -239,7 +245,7 @@ const PremiumAbout = () => {
         {/* Hero Section */}
         <motion.section
           ref={heroRef}
-          className="relative z-10 pt-20 pb-16 px-6"
+          className="relative z-10 pt-10 pb-6 px-6"
           initial={{ opacity: 0 }}
           animate={heroInView ? { opacity: 1 } : {}}
           transition={{ duration: 1 }}
@@ -308,8 +314,8 @@ const PremiumAbout = () => {
               >
                 {[
                   { icon: <Globe size={16} />, text: "Remote Ready" },
-                  { icon: <Award size={16} />, text: "3+ Years" },
-                  { icon: <Target size={16} />, text: "50+ Projects" },
+                  { icon: <Award size={16} />, text: "2+ Years" },
+                  { icon: <Target size={16} />, text: "10+ Projects" },
                   { icon: <Coffee size={16} />, text: "Available" },
                 ].map((item, index) => (
                   <motion.div

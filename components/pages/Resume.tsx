@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef, ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
 import {
-  Book, 
-  Code2, 
+  Book,
+  Code2,
   GraduationCap,
   Github,
   Database,
-  Server, 
-  Calendar, 
+  Server,
+  Calendar,
   Zap,
-  Target, 
+  Target,
   LucideIcon,
+  ZapIcon,
 } from "lucide-react";
 import HeroSection from "../HeroSetion";
 // --------------------- Animated Background Particles ---------------------
@@ -349,6 +350,15 @@ export default function Resume() {
   ];
 
   const projects = [
+      {
+      year: "2025",
+      title: "DSA & System Design Helper + AI Website Builder",
+      subtitle: "Auto-generate and deploy websites using AI prompts",
+      description:
+        "Built a smart AI-powered tool that helps users generate full-stack websites using simple prompts and deploys them instantly to Vercel. Includes a built-in DSA and System Design assistant with editable templates and real-time guidance. Supports custom domains, live editing, and secure deployments—ideal for rapid prototyping and interview prep.",
+      icon: ZapIcon,
+    },
+
     {
       year: "2025",
       title: "Google Drive Clone",
@@ -357,6 +367,7 @@ export default function Resume() {
         "Developed a secure and scalable Google Drive clone with React.js, Node.js, and MongoDB. Implemented stateful authentication using Google and GitHub OAuth, with robust session management using secure cookies. Enhanced security through CSP (Content Security Policy), input sanitization, and server-side protection. Features include real-time file upload , access control, and user activity analytics.",
       icon: Server,
     },
+  
     {
       year: "2024",
       title: "URL Shortener",
@@ -391,10 +402,10 @@ export default function Resume() {
       <HeroSection />
 
       {/* Stats Section */}
-      <section className="relative z-10 py-20 px-8">
+      <section className="relative z-10 py-10 px-8">
         <GlassCard className="max-w-6xl mx-auto p-12 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <StatCounter value={15} label="Projects Completed" icon={Target} />
+            <StatCounter value={10} label="Projects Completed" icon={Target} />
             <StatCounter value={3} label="Years Learning" icon={Calendar} />
             <StatCounter value={20} label="Technologies" icon={Zap} />
             <StatCounter value={100} label="Commits This Year" icon={Github} />
@@ -519,7 +530,7 @@ export default function Resume() {
       </section>
 
       {/* Contact CTA */}
-      <section className="relative z-10 py-20 px-8">
+      {/* <section className="relative z-10 py-20 px-8">
         <GlassCard className="max-w-4xl mx-auto p-12 text-center">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -553,7 +564,7 @@ export default function Resume() {
             </div>
           </motion.div>
         </GlassCard>
-      </section>
+      </section> */}
     </div>
   );
 }
