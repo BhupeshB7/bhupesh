@@ -56,20 +56,9 @@ const dummyProjects: Project[] = [
   liveLink: "https://coderarmy-ai.netlify.app/", 
   technologies: ["React.js", "Gemini", "Vercel", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
 },
+  
   {
     id: 3,
-    title: "E-commerce Backend",
-    description:
-      "Developed a scalable e-commerce backend using Node.js, Express, MongoDB, and Stripe. Implemented features like authentication, user management,order management, product filter/Searching , inventory management, and real-time updates.",
-    category: "Backend",
-    image:
-      "https://ik.imagekit.io/bhupeshb7/google-drive-clone?updatedAt=1753179574193",
-    githubLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
-    liveLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
-    technologies: ["Node.js", "Express", "Cloudinary", "MongoDB"],
-  },
-  {
-    id: 4,
     title: "Url Shortener",
     description:
       " Built a scalable url shortener using Next.js, Node.js, and MongoDB. Implemented features like authentication, advance analytics, QR code generation, privacy and security.",
@@ -80,7 +69,18 @@ const dummyProjects: Project[] = [
     liveLink: "https://shortenx.netlify.app",
     technologies: ["React", "TailwindCSS", "Chart.js"],
   },
-  
+  {
+    id: 4,
+    title: "E-commerce Backend",
+    description:
+      "Developed a scalable e-commerce backend using Node.js, Express, MongoDB, and Stripe. Implemented features like authentication, user management,order management, product filter/Searching , inventory management, and real-time updates.",
+    category: "Backend",
+    image:
+      "https://ik.imagekit.io/bhupeshb7/google-drive-clone?updatedAt=1753179574193",
+    githubLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
+    liveLink: "https://github.com/BhupeshB7/advance_EcommerceBackend",
+    technologies: ["Node.js", "Express", "Cloudinary", "MongoDB"],
+  },
   {
     id: 5,
     title: "VS Code Extension",
